@@ -66,6 +66,7 @@ export default function Home() {
                 alt="uzi-background"
                 className="rounded-[46px]"
                 onLoad={() => setBgLoading(false)}
+                priority
               />
             </div>
           </div>

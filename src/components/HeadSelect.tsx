@@ -1,7 +1,6 @@
 import React, { FC, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
-import { cn } from "@/utils/cn";
 
 const images = [
   "/head/glasses.png",
@@ -17,11 +16,10 @@ const images = [
 const length = images.length;
 
 export type HeadSelectProps = {
-  loading: boolean;
   onLoad: () => void;
 };
 
-export const HeadSelect: FC<HeadSelectProps> = ({ loading, onLoad }) => {
+export const HeadSelect: FC<HeadSelectProps> = ({ onLoad }) => {
   const [index, setIndex] = useState(0);
 
   return (
@@ -43,15 +41,12 @@ export const HeadSelect: FC<HeadSelectProps> = ({ loading, onLoad }) => {
         color="#ff1aec"
         onClick={() => setIndex((index - 1 + length) % length)}
         size={50}
-        className={cn(
-          "relative right-4 md:right-16 bottom-12 select-none z-10 cursor-pointer transition-all duration-200 blur-[2px] hover:blur-none",
-          loading && "hidden",
-        )}
+        className="relative right-4 md:right-16 bottom-12 select-none z-10 cursor-pointer transition-all duration-200 blur-[2px] hover:blur-none"
       />
       <Image
         src={images[index]}
         alt="uzi-head"
-        className={cn(loading && "hidden", "select-none z-10")}
+        className="select-none z-10"
         height={100}
         width={255}
         onLoad={onLoad}
@@ -61,10 +56,7 @@ export const HeadSelect: FC<HeadSelectProps> = ({ loading, onLoad }) => {
         color="#ff1aec"
         onClick={() => setIndex((index + 1) % length)}
         size={50}
-        className={cn(
-          "relative left-4 md:left-16 bottom-12 select-none z-10 cursor-pointer transition-all duration-200 blur-[2px] hover:blur-none",
-          loading && "hidden",
-        )}
+        className="relative left-4 md:left-16 bottom-12 select-none z-10 cursor-pointer transition-all duration-200 blur-[2px] hover:blur-none"
       />
     </>
   );

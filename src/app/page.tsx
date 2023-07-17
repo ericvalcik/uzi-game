@@ -41,51 +41,58 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between md:p-24 py-24">
       <div className="flex flex-col items-center justify-center h-full">
-        <div>
-          {backgrounds.map((image, i) => (
-            <Image
-              src={image}
-              key={i}
-              alt={`uzi-bg-preload-${i}`}
-              className="hidden"
-              height={216}
-              width={170}
-              priority
-            />
-          ))}
-        </div>
-        <button
-          onClick={() => setBgIndex((bgIndex + 1) % bgLength)}
-          className="flex items-center justify-center gap-4 text-[#ff1aec] rounded-xl border-2 border-[#ff1aec] px-4 py-2 transition-all duration-200 group hover:border-white hover:text-white"
-        >
-          <RefreshCw className="group-hover:rotate-180 transition-transform duration-200" />
-          BACKGROUND
-        </button>
-        <div className="relative">
-          <div className="absolute rounded-[50px] border-4 border-solid border-[#ff1aec] w-[300px] md:w-[300px] h-[300px] left-[-150px] top-[calc(24px+15vh)]">
-            <Image
-              src={backgrounds[bgIndex]}
-              fill
-              alt="uzi-background"
-              className="rounded-[46px]"
-              onLoad={() => setLoading(setLoadedType(loading, "bg"))}
-            />
-          </div>
-        </div>
         {getLoadingValue(loading) && <div>Loading...</div>}
-        <div className="mt-[15vh]">
-          <SelectWrapper className="relative h-40 top-[72px]">
-            <HeadSelect
-              loading={getLoadingValue(loading)}
-              onLoad={() => setLoading(setLoadedType(loading, "head"))}
-            />
-          </SelectWrapper>
-          <SelectWrapper className="relative h-40 bottom-[82px]">
-            <BodySelect
-              loading={getLoadingValue(loading)}
-              onLoad={() => setLoading(setLoadedType(loading, "body"))}
-            />
-          </SelectWrapper>
+        <div
+          className={cn(
+            "flex flex-col items-center justify-center h-full",
+            getLoadingValue(loading) && "hidden",
+          )}
+        >
+          <div>
+            {backgrounds.map((image, i) => (
+              <Image
+                src={image}
+                key={i}
+                alt={`uzi-bg-preload-${i}`}
+                className="hidden"
+                height={216}
+                width={170}
+                priority
+              />
+            ))}
+          </div>
+          <button
+            onClick={() => setBgIndex((bgIndex + 1) % bgLength)}
+            className="flex items-center justify-center gap-4 text-[#ff1aec] rounded-xl border-2 border-[#ff1aec] px-4 py-2 transition-all duration-200 group hover:border-white hover:text-white"
+          >
+            <RefreshCw className="group-hover:rotate-180 transition-transform duration-200" />
+            BACKGROUND
+          </button>
+          <div className="relative">
+            <div className="absolute rounded-[50px] border-4 border-solid border-[#ff1aec] w-[300px] md:w-[300px] h-[300px] left-[-150px] top-[calc(24px+15vh)]">
+              <Image
+                src={backgrounds[bgIndex]}
+                fill
+                alt="uzi-background"
+                className="rounded-[46px]"
+                onLoad={() => setLoading(setLoadedType(loading, "bg"))}
+              />
+            </div>
+          </div>
+          <div className="mt-[15vh]">
+            <SelectWrapper className="relative h-40 top-[72px]">
+              <HeadSelect
+                loading={getLoadingValue(loading)}
+                onLoad={() => setLoading(setLoadedType(loading, "head"))}
+              />
+            </SelectWrapper>
+            <SelectWrapper className="relative h-40 bottom-[82px]">
+              <BodySelect
+                loading={getLoadingValue(loading)}
+                onLoad={() => setLoading(setLoadedType(loading, "body"))}
+              />
+            </SelectWrapper>
+          </div>
         </div>
       </div>
     </main>

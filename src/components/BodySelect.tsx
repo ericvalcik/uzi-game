@@ -42,7 +42,7 @@ export const BodySelect: FC<BodySelectProps> = ({ loading, onLoad }) => {
         onClick={() => setIndex((index - 1 + length) % length)}
         size={50}
         className={cn(
-          "select-none cursor-pointer transition-all duration-200 blur-[2px] hover:blur-none",
+          "relative right-16 select-none mt-44 cursor-pointer transition-all duration-200 blur-[2px] hover:blur-none",
           loading && "hidden",
         )}
       />
@@ -50,8 +50,8 @@ export const BodySelect: FC<BodySelectProps> = ({ loading, onLoad }) => {
         src={images[index]}
         alt="uzi-body"
         className={cn(loading && "hidden", "select-none")}
-        height={216}
-        width={170}
+        height={100}
+        width={255}
         onLoad={onLoad}
         priority
       />
@@ -60,7 +60,7 @@ export const BodySelect: FC<BodySelectProps> = ({ loading, onLoad }) => {
         onClick={() => setIndex((index + 1) % length)}
         size={50}
         className={cn(
-          "select-none cursor-pointer transition-all duration-200 blur-[2px] hover:blur-none",
+          "relative left-16 select-none mt-44 cursor-pointer transition-all duration-200 blur-[2px] hover:blur-none",
           loading && "hidden",
         )}
       />

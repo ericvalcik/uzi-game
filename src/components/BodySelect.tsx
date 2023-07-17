@@ -29,8 +29,8 @@ export const BodySelect: FC<BodySelectProps> = ({ onLoad }) => {
             key={i}
             alt={`uzi-body-preload-${i}`}
             className="hidden"
-            height={216}
-            width={170}
+            height={100}
+            width={255}
             priority
           />
         ))}

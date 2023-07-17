@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { ChevronRight, ChevronLeft } from "lucide-react";
+import { cn } from "@/utils/cn";
 
 const images = [
   "/head/glasses.png",
@@ -34,27 +36,31 @@ export default function Home() {
             priority
           />
         ))}
-        <button
+        <ChevronLeft
+          color="#ff1aec"
           onClick={() => setIndex((index - 1 + length) % length)}
-          className={loading ? "hidden" : ""}
-        >
-          Left
-        </button>
+          className={cn(
+            "select-none cursor-pointer transition-all duration-200 blur-[2px] hover:blur-none",
+            loading && "hidden",
+          )}
+        />
         <Image
           src={images[index]}
           alt="uzi-head"
-          className={loading ? "hidden" : ""}
+          className={cn(loading && "hidden", "select-none")}
           height={216}
           width={170}
           onLoad={() => setLoading(false)}
           priority
         />
-        <button
+        <ChevronRight
+          color="#ff1aec"
           onClick={() => setIndex((index + 1) % length)}
-          className={loading ? "hidden" : ""}
-        >
-          Right
-        </button>
+          className={cn(
+            "select-none cursor-pointer transition-all duration-200 blur-[2px] hover:blur-none",
+            loading && "hidden",
+          )}
+        />
       </div>
     </main>
   );

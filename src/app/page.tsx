@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState, Suspense } from "react";
 
 const images = [
   "/head/glasses.png",
@@ -21,17 +21,30 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="flex items-center justify-center">
-        <button onClick={() => setIndex((index - 1 + length) % length)}>
-          Left
-        </button>
-        <Image
-          src={images[index]}
-          alt="glasses"
-          height={216}
-          width={170}
-          priority
-        />
-        <button onClick={() => setIndex((index + 1) % length)}>Right</button>
+        <Suspense fallback={<div>Loading...</div>}>
+          {images.map((image, i) => (
+            <Image
+              src={image}
+              key={i}
+              alt={`uzi-head-preload-${i}`}
+              className="hidden"
+              height={216}
+              width={170}
+              priority
+            />
+          ))}
+          <button onClick={() => setIndex((index - 1 + length) % length)}>
+            Left
+          </button>
+          <Image
+            src={images[index]}
+            alt="uzi-head"
+            height={216}
+            width={170}
+            priority
+          />
+          <button onClick={() => setIndex((index + 1) % length)}>Right</button>
+        </Suspense>
       </div>
     </main>
   );

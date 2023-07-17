@@ -34,12 +34,13 @@ export default function Home() {
   const [loading, setLoading] = useState<LoadingObject>({
     head: true,
     body: true,
+    loading: true,
   });
   const [bgIndex, setBgIndex] = useState(0);
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="flex flex-col items-center justify-center">
+    <main className="flex min-h-screen flex-col items-center justify-between md:p-24 py-24">
+      <div className="flex flex-col items-center justify-center h-full">
         <div>
           {backgrounds.map((image, i) => (
             <Image
@@ -61,28 +62,31 @@ export default function Home() {
           BACKGROUND
         </button>
         <div className="relative">
-          <div className="absolute rounded-[50px] border-4 border-solid border-[#ff1aec] w-[300px] h-[300px] left-[-150px] top-[24px]">
+          <div className="absolute rounded-[50px] border-4 border-solid border-[#ff1aec] w-[300px] md:w-[300px] h-[300px] left-[-150px] top-[calc(24px+15vh)]">
             <Image
               src={backgrounds[bgIndex]}
               fill
               alt="uzi-background"
               className="rounded-[46px]"
+              onLoad={() => setLoading(setLoadedType(loading, "bg"))}
             />
           </div>
         </div>
         {getLoadingValue(loading) && <div>Loading...</div>}
-        <SelectWrapper className="relative h-40 top-[72px]">
-          <HeadSelect
-            loading={getLoadingValue(loading)}
-            onLoad={() => setLoading(setLoadedType(loading, "head"))}
-          />
-        </SelectWrapper>
-        <SelectWrapper className="relative h-40 bottom-[82px]">
-          <BodySelect
-            loading={getLoadingValue(loading)}
-            onLoad={() => setLoading(setLoadedType(loading, "body"))}
-          />
-        </SelectWrapper>
+        <div className="mt-[15vh]">
+          <SelectWrapper className="relative h-40 top-[72px]">
+            <HeadSelect
+              loading={getLoadingValue(loading)}
+              onLoad={() => setLoading(setLoadedType(loading, "head"))}
+            />
+          </SelectWrapper>
+          <SelectWrapper className="relative h-40 bottom-[82px]">
+            <BodySelect
+              loading={getLoadingValue(loading)}
+              onLoad={() => setLoading(setLoadedType(loading, "body"))}
+            />
+          </SelectWrapper>
+        </div>
       </div>
     </main>
   );

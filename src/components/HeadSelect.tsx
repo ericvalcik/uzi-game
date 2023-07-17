@@ -44,7 +44,7 @@ export const HeadSelect: FC<HeadSelectProps> = ({ loading, onLoad }) => {
         onClick={() => setIndex((index - 1 + length) % length)}
         size={50}
         className={cn(
-          "relative right-16 bottom-12 select-none z-10 cursor-pointer transition-all duration-200 blur-[2px] hover:blur-none",
+          "relative right-4 md:right-16 bottom-12 select-none z-10 cursor-pointer transition-all duration-200 blur-[2px] hover:blur-none",
           loading && "hidden",
         )}
       />
@@ -62,7 +62,7 @@ export const HeadSelect: FC<HeadSelectProps> = ({ loading, onLoad }) => {
         onClick={() => setIndex((index + 1) % length)}
         size={50}
         className={cn(
-          "relative left-16 bottom-12 select-none z-10 cursor-pointer transition-all duration-200 blur-[2px] hover:blur-none",
+          "relative left-4 md:left-16 bottom-12 select-none z-10 cursor-pointer transition-all duration-200 blur-[2px] hover:blur-none",
           loading && "hidden",
         )}
       />

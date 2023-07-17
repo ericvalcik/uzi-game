@@ -1,65 +1,40 @@
 "use client";
 
-import Image from "next/image";
-import { useState } from "react";
-import { ChevronRight, ChevronLeft } from "lucide-react";
-import { cn } from "@/utils/cn";
+import { useState, useEffect } from "react";
+import { HeadSelect, BodySelect } from "@/components";
 
-const images = [
-  "/head/glasses.png",
-  "/head/kidsaward.png",
-  "/head/leslie.png",
-  "/head/og.png",
-  "/head/ogpink.png",
-  "/head/shades.png",
-  "/head/spikes.png",
-  "/head/spikespink.png",
-];
+type LoadingObject = {
+  [type: string]: boolean;
+};
+
+const getLoadingValue = (loading: LoadingObject): boolean => {
+  return Object.values(loading).some((value) => value);
+};
+
+const setLoadedType = (loading: LoadingObject, type: string): LoadingObject => {
+  return {
+    ...loading,
+    [type]: false,
+  };
+};
 
 export default function Home() {
-  const [loading, setLoading] = useState(true);
-  const [index, setIndex] = useState(0);
-  const length = images.length;
+  const [loading, setLoading] = useState<LoadingObject>({
+    head: true,
+    body: true,
+  });
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="flex items-center justify-center">
-        {loading && <div>Loading...</div>}
-        {images.map((image, i) => (
-          <Image
-            src={image}
-            key={i}
-            alt={`uzi-head-preload-${i}`}
-            className="hidden"
-            height={216}
-            width={170}
-            priority
-          />
-        ))}
-        <ChevronLeft
-          color="#ff1aec"
-          onClick={() => setIndex((index - 1 + length) % length)}
-          className={cn(
-            "select-none cursor-pointer transition-all duration-200 blur-[2px] hover:blur-none",
-            loading && "hidden",
-          )}
+        {getLoadingValue(loading) && <div>Loading...</div>}
+        <HeadSelect
+          loading={getLoadingValue(loading)}
+          onLoad={() => setLoading(setLoadedType(loading, "head"))}
         />
-        <Image
-          src={images[index]}
-          alt="uzi-head"
-          className={cn(loading && "hidden", "select-none")}
-          height={216}
-          width={170}
-          onLoad={() => setLoading(false)}
-          priority
-        />
-        <ChevronRight
-          color="#ff1aec"
-          onClick={() => setIndex((index + 1) % length)}
-          className={cn(
-            "select-none cursor-pointer transition-all duration-200 blur-[2px] hover:blur-none",
-            loading && "hidden",
-          )}
+        <BodySelect
+          loading={getLoadingValue(loading)}
+          onLoad={() => setLoading(setLoadedType(loading, "body"))}
         />
       </div>
     </main>

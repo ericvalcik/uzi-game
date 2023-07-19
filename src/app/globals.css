@@ -6,4 +6,5 @@ body {
   color: #fff;
   background: #000;
   overflow: hidden;
+  user-select: none;
 }

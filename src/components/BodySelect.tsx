@@ -1,6 +1,7 @@
 import React, { FC, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
+import { cn } from "@/utils/cn";
 
 const images = [
   "/body/cover.png",
@@ -28,16 +29,21 @@ export const BodySelect: FC<BodySelectProps> = ({ onLoad }) => {
         size={50}
         className="relative right-4 md:right-16 select-none mt-44 cursor-pointer transition-all duration-200 blur-[2px] hover:blur-none"
       />
-      <Image
-        src={images[index]}
-        alt="uzi-body"
-        className="select-none"
-        height={100}
-        width={255}
-        onLoad={onLoad}
-        unoptimized
-        priority
-      />
+      {images.map((src, mapIndex) => (
+        <Image
+          src={src}
+          key={mapIndex}
+          alt="uzi-body"
+          className={cn(
+            "w-[255px] h-[320px] select-none",
+            mapIndex !== index && "hidden",
+          )}
+          height={640}
+          width={510}
+          onLoad={onLoad}
+          priority
+        />
+      ))}
       <ChevronRight
         color="#ff1aec"
         onClick={() => setIndex((index + 1) % length)}

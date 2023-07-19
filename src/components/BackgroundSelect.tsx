@@ -3,6 +3,7 @@
 import React, { FC, useState } from "react";
 import { RefreshCw } from "lucide-react";
 import Image from "next/image";
+import { cn } from "@/utils/cn";
 
 const backgrounds = [
   "/bgs/FLAG.png",
@@ -27,14 +28,16 @@ export const BackgroundSelect: FC = () => {
       </button>
       <div className="relative">
         <div className="absolute rounded-[50px] border-4 border-solid border-[#ff1aec] w-[300px] md:w-[300px] h-[300px] left-[-150px] top-[calc(24px+15vh)]">
-          <Image
-            src={backgrounds[index]}
-            fill
-            alt="uzi-background"
-            className="rounded-[46px]"
-            unoptimized
-            priority
-          />
+          {backgrounds.map((src, mapIndex) => (
+            <Image
+              src={src}
+              key={mapIndex}
+              fill
+              alt="uzi-background"
+              className={cn("rounded-[46px]", mapIndex !== index && "hidden")}
+              priority
+            />
+          ))}
         </div>
       </div>
     </>

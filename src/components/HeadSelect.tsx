@@ -1,6 +1,7 @@
 import React, { FC, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
+import { cn } from "@/utils/cn";
 
 const images = [
   "/head/glasses.png",
@@ -30,16 +31,21 @@ export const HeadSelect: FC<HeadSelectProps> = ({ onLoad }) => {
         size={50}
         className="relative right-4 md:right-16 bottom-12 select-none z-10 cursor-pointer transition-all duration-200 blur-[2px] hover:blur-none"
       />
-      <Image
-        src={images[index]}
-        alt="uzi-head"
-        className="select-none z-10"
-        height={255}
-        width={255}
-        onLoad={onLoad}
-        unoptimized
-        priority
-      />
+      {images.map((src, mapIndex) => (
+        <Image
+          src={src}
+          key={mapIndex}
+          alt="uzi-head"
+          className={cn(
+            "w-[255px] h-[320px] select-none z-10",
+            mapIndex !== index && "hidden",
+          )}
+          height={640}
+          width={510}
+          onLoad={onLoad}
+          priority
+        />
+      ))}
       <ChevronRight
         color="#ff1aec"
         onClick={() => setIndex((index + 1) % length)}

@@ -21,7 +21,7 @@ export const BackgroundSelect: FC = () => {
     <>
       <button
         onClick={() => setIndex((index + 1) % length)}
-        className="flex items-center justify-center gap-4 text-[#ff1aec] rounded-xl border-2 border-[#ff1aec] px-4 py-2 transition-all duration-200 group hover:border-white hover:text-white"
+        className="select-none flex items-center justify-center gap-4 text-[#ff1aec] rounded-xl border-2 border-[#ff1aec] px-4 py-2 transition-all duration-200 group hover:border-white hover:text-white"
       >
         <RefreshCw className="group-hover:rotate-180 transition-transform duration-200" />
         BACKGROUND

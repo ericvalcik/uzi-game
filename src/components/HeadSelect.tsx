@@ -24,19 +24,6 @@ export const HeadSelect: FC<HeadSelectProps> = ({ onLoad }) => {
 
   return (
     <>
-      <div>
-        {images.map((image, i) => (
-          <Image
-            src={image}
-            key={i}
-            alt={`uzi-head-preload-${i}`}
-            className="hidden"
-            height={216}
-            width={170}
-            priority
-          />
-        ))}
-      </div>
       <ChevronLeft
         color="#ff1aec"
         onClick={() => setIndex((index - 1 + length) % length)}
@@ -47,9 +34,10 @@ export const HeadSelect: FC<HeadSelectProps> = ({ onLoad }) => {
         src={images[index]}
         alt="uzi-head"
         className="select-none z-10"
-        height={100}
+        height={255}
         width={255}
         onLoad={onLoad}
+        unoptimized
         priority
       />
       <ChevronRight

@@ -22,19 +22,6 @@ export const BodySelect: FC<BodySelectProps> = ({ onLoad }) => {
 
   return (
     <>
-      <div>
-        {images.map((image, i) => (
-          <Image
-            src={image}
-            key={i}
-            alt={`uzi-body-preload-${i}`}
-            className="hidden"
-            height={100}
-            width={255}
-            priority
-          />
-        ))}
-      </div>
       <ChevronLeft
         color="#ff1aec"
         onClick={() => setIndex((index - 1 + length) % length)}
@@ -48,6 +35,7 @@ export const BodySelect: FC<BodySelectProps> = ({ onLoad }) => {
         height={100}
         width={255}
         onLoad={onLoad}
+        unoptimized
         priority
       />
       <ChevronRight

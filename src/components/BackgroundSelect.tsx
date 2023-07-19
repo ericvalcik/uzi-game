@@ -35,6 +35,7 @@ export const BackgroundSelect: FC = () => {
               fill
               alt="uzi-background"
               className={cn("rounded-[46px]", mapIndex !== index && "hidden")}
+              priority
             />
           ))}
         </div>

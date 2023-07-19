@@ -41,7 +41,6 @@ export const BodySelect: FC<BodySelectProps> = ({ onLoad }) => {
           height={640}
           width={510}
           onLoad={onLoad}
-          priority
         />
       ))}
       <ChevronRight

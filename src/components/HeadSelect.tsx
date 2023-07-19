@@ -43,7 +43,6 @@ export const HeadSelect: FC<HeadSelectProps> = ({ onLoad }) => {
           height={640}
           width={510}
           onLoad={onLoad}
-          priority
         />
       ))}
       <ChevronRight

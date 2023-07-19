@@ -28,6 +28,7 @@ export const LoadingScreen: FC = () => {
               height: "100%",
               objectFit: "cover",
             }}
+            priority
           />
         </motion.div>
         <motion.div
@@ -48,6 +49,7 @@ export const LoadingScreen: FC = () => {
               objectFit: "cover",
               overflow: "hidden",
             }}
+            priority
           />
         </motion.div>
       </div>

@@ -13,7 +13,8 @@ export const LoadingScreen: FC = () => {
         <motion.div
           className="absolute inset-0 w-screen h-screen z-30 overflow-hidden"
           animate={{
-            y: -window.innerHeight / 2,
+            y:
+              -(typeof window !== "undefined" ? window?.innerHeight : 2000) / 2,
             opacity: 0,
             transitionEnd: { display: "none" },
             transition: { duration: 0.7, delay: 3, ease: "easeIn" },
@@ -32,7 +33,7 @@ export const LoadingScreen: FC = () => {
         <motion.div
           className="absolute inset-0 w-screen h-screen z-30 overflow-hidden"
           animate={{
-            y: window.innerHeight / 2,
+            y: (typeof window !== "undefined" ? window?.innerHeight : 2000) / 2,
             opacity: 0,
             transitionEnd: { display: "none" },
             transition: { duration: 0.7, delay: 3, ease: "easeIn" },

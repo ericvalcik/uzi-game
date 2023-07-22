@@ -15,7 +15,6 @@ export const BodySelect: FC<BodySelectProps> = ({}) => {
   return (
     <>
       <ChevronLeft
-        color="#ff1aec"
         onClick={() => setIndex((index - 1 + length) % length)}
         size={50}
         className={cn("relative right-4 md:right-16 mt-44", chevronStyling)}
@@ -33,7 +32,6 @@ export const BodySelect: FC<BodySelectProps> = ({}) => {
         />
       ))}
       <ChevronRight
-        color="#ff1aec"
         onClick={() => setIndex((index + 1) % length)}
         size={50}
         className={cn("relative left-4 md:left-16 mt-44 ", chevronStyling)}

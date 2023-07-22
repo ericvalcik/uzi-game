@@ -13,10 +13,10 @@ export default function Home() {
       <div className={cn("flex flex-col items-center justify-center h-full")}>
         <BackgroundSelect />
         <div className="mt-[15vh]">
-          <SelectWrapper className="relative h-40 top-[82px]">
+          <SelectWrapper className="relative h-40 top-[80px]">
             <HeadSelect />
           </SelectWrapper>
-          <SelectWrapper className="relative h-40 bottom-[80px]">
+          <SelectWrapper className="relative h-40 bottom-[82px]">
             <BodySelect />
           </SelectWrapper>
         </div>

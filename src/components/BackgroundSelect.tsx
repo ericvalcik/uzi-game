@@ -4,13 +4,7 @@ import React, { FC, useState } from "react";
 import { RefreshCw } from "lucide-react";
 import Image from "next/image";
 import { cn } from "@/utils/cn";
-
-const backgrounds = [
-  "/bgs/FLAG.png",
-  "/bgs/WHITE.png",
-  "/bgs/BLACK.png",
-  "/bgs/PINK.png",
-];
+import { backgrounds } from "@/consts";
 
 const length = backgrounds.length;
 

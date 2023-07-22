@@ -31,10 +31,10 @@ export default function Home() {
             >
               <BackgroundSelect />
               <div className="mt-[15vh]">
-                <SelectWrapper className="relative h-40 top-[80px]">
+                <SelectWrapper className="relative h-40 top-[82px]">
                   <HeadSelect onLoad={() => setHeadLoading(false)} />
                 </SelectWrapper>
-                <SelectWrapper className="relative h-40 bottom-[82px]">
+                <SelectWrapper className="relative h-40 bottom-[80px]">
                   <BodySelect onLoad={() => setBodyLoading(false)} />
                 </SelectWrapper>
               </div>

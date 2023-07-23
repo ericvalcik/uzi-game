@@ -112,7 +112,7 @@ export const LoadingScreen: FC<LoadingScreenProps> = ({ setRengerPage }) => {
           <motion.div
             className="w-[390px]"
             style={{
-              filter: spaceShipBlur,
+              filter: `drop-shadow(0 0 0.35rem #ff1aec)`,
               scale: spaceshipScale,
               marginTop: spaceshipMarginTop,
               marginRight: spaceshipMarginRight,
@@ -133,7 +133,10 @@ export const LoadingScreen: FC<LoadingScreenProps> = ({ setRengerPage }) => {
             <motion.div
               initial={{ opacity: 0 }}
               className={cn("mt-20", joystix.className)}
-              style={{ opacity: scrollTextOpacityVal, filter: scrollTextBlur }}
+              style={{
+                opacity: scrollTextOpacityVal,
+                filter: `drop-shadow(0 0 0.35rem white)`,
+              }}
               animate={{ y: [0, -10, 0] }}
               transition={{
                 repeat: Infinity,

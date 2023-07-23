@@ -112,14 +112,12 @@ export const LoadingScreen: FC<LoadingScreenProps> = ({ setRengerPage }) => {
           <motion.div
             className="w-[390px]"
             style={{
-              scaleY: spaceshipScale,
-              scaleX: spaceshipScale,
               filter: spaceShipBlur,
+              scale: spaceshipScale,
               marginTop: spaceshipMarginTop,
               marginRight: spaceshipMarginRight,
               opacity: spaceshipOpacity,
             }}
-            animate={{}}
           >
             <Image
               src={spaceship}
@@ -136,6 +134,10 @@ export const LoadingScreen: FC<LoadingScreenProps> = ({ setRengerPage }) => {
               initial={{ opacity: 0 }}
               className={cn("mt-20", joystix.className)}
               style={{ opacity: scrollTextOpacityVal, filter: scrollTextBlur }}
+              animate={{ y: [0, -10, 0] }}
+              transition={{
+                repeat: Infinity,
+              }}
             >
               SWIPE DOWN TO START
             </motion.div>

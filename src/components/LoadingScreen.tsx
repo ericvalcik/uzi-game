@@ -66,7 +66,7 @@ export const LoadingScreen: FC<LoadingScreenProps> = ({ setRengerPage }) => {
   const scrollTextOpacityVal = useMotionValue(0);
   animate(scrollTextOpacityVal, 1, {
     duration: 0.5,
-    delay: 3.5,
+    delay: 1,
   });
 
   // Scroll text - fade with scroll

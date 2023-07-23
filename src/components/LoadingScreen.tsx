@@ -1,55 +1,53 @@
 "use client";
 
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import Image from "next/image";
-import loadTop from "../../public/load-top.png";
-import loadBottom from "../../public/load-bottom.png";
-import { motion } from "framer-motion";
+import { motion, useScroll } from "framer-motion";
+import logo from "../../public/loading/logo.png";
+import spaceship from "../../public/loading/spaceship.png";
 
 export const LoadingScreen: FC = () => {
+  const [scroll, setScroll] = useState(0);
+  const { scrollYProgress } = useScroll();
+
+  scrollYProgress.on("change", (latest) => {
+    setScroll(latest);
+    console.log(latest);
+  });
+
   return (
     <div className="relative">
-      <motion.div
-        className="absolute inset-0 w-screen h-screen z-30 overflow-hidden"
-        animate={{
-          y: -(typeof window !== "undefined" ? window?.innerHeight : 2000) / 2,
-          opacity: 0,
-          transitionEnd: { display: "none" },
-          transition: { duration: 0.7, delay: 3, ease: "easeIn" },
-        }}
-      >
-        <Image
-          src={loadTop}
-          alt="load-top"
-          sizes="100vh"
-          style={{
-            height: "100%",
-            objectFit: "cover",
-          }}
-          priority
-        />
-      </motion.div>
-      <motion.div
-        className="absolute inset-0 w-screen h-screen z-30 overflow-hidden"
-        animate={{
-          y: (typeof window !== "undefined" ? window?.innerHeight : 2000) / 2,
-          opacity: 0,
-          transitionEnd: { display: "none" },
-          transition: { duration: 0.7, delay: 3, ease: "easeIn" },
-        }}
-      >
-        <Image
-          src={loadBottom}
-          alt="load-bottom"
-          sizes="100vh"
-          style={{
-            height: "100%",
-            objectFit: "cover",
-            overflow: "hidden",
-          }}
-          priority
-        />
-      </motion.div>
+      <div className="absolute w-screen z-30 h-[300vh]">
+        <div className="items-center flex flex-col fixed w-screen h-screen">
+          <motion.div
+            className="mt-20"
+            style={{ filter: `blur(${scroll * 150}px)` }}
+          >
+            <Image
+              src={logo}
+              alt="uzi-logo"
+              className="select-none"
+              height={200}
+              width={400}
+            />
+          </motion.div>
+          <motion.div
+            className="w-[390px]"
+            style={{
+              scaleY: `${1 + scroll * 25}`,
+              scaleX: `${1 + scroll * 25}`,
+              marginTop: `${128 + scroll * 500}px`,
+            }}
+          >
+            <Image
+              src={spaceship}
+              alt="uzi-spaceship"
+              width={1920}
+              height={1080}
+            />
+          </motion.div>
+        </div>
+      </div>
     </div>
   );
 };

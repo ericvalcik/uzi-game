@@ -24,9 +24,12 @@ export const BodySelect: FC<BodySelectProps> = ({}) => {
           src={src}
           key={mapIndex}
           alt="uzi-body"
-          className={cn("select-none", mapIndex !== index && "hidden")}
-          height={320}
-          width={255}
+          className={cn(
+            "select-none h-[320px] w-[255px]",
+            mapIndex !== index && "hidden",
+          )}
+          height={640}
+          width={510}
           quality={100}
           loading="eager"
         />

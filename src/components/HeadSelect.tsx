@@ -26,9 +26,12 @@ export const HeadSelect: FC<HeadSelectProps> = ({}) => {
           src={src}
           key={mapIndex}
           alt="uzi-head"
-          className={cn("select-none z-10", mapIndex !== index && "hidden")}
-          height={320}
-          width={255}
+          className={cn(
+            "select-none z-10 h-[320px] w-[255px]",
+            mapIndex !== index && "hidden",
+          )}
+          height={640}
+          width={510}
           quality={100}
           loading="eager"
         />

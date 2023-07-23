@@ -33,14 +33,9 @@ export const LoadingScreen: FC<LoadingScreenProps> = ({ setRengerPage }) => {
   const spaceshipScale = useTransform(scrollYProgress, [0, 1], [1, 40], {
     ease: cubicBezier(0.88, 0.18, 1, 0.64),
   });
-  const spaceshipMarginTop = useTransform(
-    scrollYProgress,
-    [0, 1],
-    [128, 1050],
-    {
-      ease: cubicBezier(0.88, 0.18, 1, 0.64),
-    },
-  );
+  const spaceshipMarginTop = useTransform(scrollYProgress, [0, 1], [50, 1050], {
+    ease: cubicBezier(0.88, 0.18, 1, 0.64),
+  });
   const spaceshipMarginRight = useTransform(
     scrollYProgress,
     [0, 1],
@@ -55,10 +50,10 @@ export const LoadingScreen: FC<LoadingScreenProps> = ({ setRengerPage }) => {
 
   // Spaceship
   const spaceShipBlurVal = useMotionValue(0.35);
-  const sequence: AnimationSequence = [
+  const spaceshipSequence: AnimationSequence = [
     [spaceShipBlurVal, 1.5, { duration: 0.25, delay: 1.5, ease: "linear" }],
   ];
-  const spaceShipAnimate = animate(sequence, {
+  const spaceShipAnimate = animate(spaceshipSequence, {
     repeat: Infinity,
     repeatType: "reverse",
   });
@@ -67,12 +62,29 @@ export const LoadingScreen: FC<LoadingScreenProps> = ({ setRengerPage }) => {
     (v) => `drop-shadow(0 0 ${v}rem #ff1aec)`,
   );
 
-  // Scroll text
+  // Scroll text - opacity
   const scrollTextOpacityVal = useMotionValue(0);
   animate(scrollTextOpacityVal, 1, {
     duration: 0.5,
     delay: 3.5,
   });
+
+  // Scroll text - fade with scroll
+  const scrollTextDivOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
+
+  // Scroll text - bloom
+  const scrollTextBloomVal = useMotionValue(0.2);
+  const scrollTextSequence: AnimationSequence = [
+    [scrollTextBloomVal, 1, { duration: 0.25, delay: 1.5, ease: "linear" }],
+  ];
+  const scrollTextAnimate = animate(scrollTextSequence, {
+    repeat: Infinity,
+    repeatType: "reverse",
+  });
+  const scrollTextBlur = useTransform(
+    scrollTextBloomVal,
+    (v) => `drop-shadow(0 0 ${v}rem white)`,
+  );
 
   // event related code
   scrollYProgress.on("change", (v) => {
@@ -88,7 +100,7 @@ export const LoadingScreen: FC<LoadingScreenProps> = ({ setRengerPage }) => {
     <div className="relative">
       <div className="absolute w-screen z-30 h-[300vh]">
         <div className="items-center flex flex-col fixed w-screen h-screen">
-          <motion.div className="mt-20" style={{ filter: blur }}>
+          <motion.div className="mt-12" style={{ filter: blur }}>
             <Image
               src={logo}
               alt="uzi-logo"
@@ -117,10 +129,16 @@ export const LoadingScreen: FC<LoadingScreenProps> = ({ setRengerPage }) => {
             />
           </motion.div>
           <motion.div
-            className={cn("mt-20", joystix.className)}
-            style={{ opacity: scrollTextOpacityVal, filter: blur }}
+            style={{ opacity: scrollTextDivOpacity }}
+            className="fixed mt-[50vh]"
           >
-            SWIPE DOWN TO START
+            <motion.div
+              initial={{ opacity: 0 }}
+              className={cn("mt-20", joystix.className)}
+              style={{ opacity: scrollTextOpacityVal, filter: scrollTextBlur }}
+            >
+              SWIPE DOWN TO START
+            </motion.div>
           </motion.div>
         </div>
       </div>

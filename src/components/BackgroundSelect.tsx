@@ -21,7 +21,7 @@ export const BackgroundSelect: FC = () => {
         BACKGROUND
       </button>
       <div className="relative">
-        <div className="absolute rounded-[50px] border-4 border-solid border-[#ff1aec] w-[300px] md:w-[300px] h-[300px] left-[-150px] top-[calc(24px+15vh)]">
+        <div className="absolute rounded-[50px] border-4 border-solid border-[#ff1aec] w-[290px] md:w-[290px] h-[290px] left-[-145px] top-[calc(64px)]">
           {backgrounds.map((src, mapIndex) => (
             <Image
               src={src}

@@ -2,27 +2,39 @@
 
 import React, { FC, useState } from "react";
 import Image from "next/image";
-import { motion, useScroll } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  animate,
+  useMotionValue,
+} from "framer-motion";
 import logo from "../../public/loading/logo.png";
 import spaceship from "../../public/loading/spaceship.png";
 
 export const LoadingScreen: FC = () => {
-  const [scroll, setScroll] = useState(0);
   const { scrollYProgress } = useScroll();
+  const blurVal = useTransform(scrollYProgress, [0, 1], [0, 300]);
+  const blur = useTransform(blurVal, (v) => `blur(${v}px)`);
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 26]);
 
-  scrollYProgress.on("change", (latest) => {
-    setScroll(latest);
-    console.log(latest);
+  const spaceShipBlurVal = useMotionValue(0.35);
+  const spaceShipAnimate = animate(spaceShipBlurVal, 1.5, {
+    duration: 0.7,
+    repeat: Infinity,
+    repeatType: "mirror",
+    ease: "easeOut",
   });
+  const spaceShipBlur = useTransform(
+    spaceShipBlurVal,
+    (v) => `drop-shadow(0 0 ${v}rem #ff1aec)`,
+  );
 
   return (
     <div className="relative">
       <div className="absolute w-screen z-30 h-[300vh]">
         <div className="items-center flex flex-col fixed w-screen h-screen">
-          <motion.div
-            className="mt-20"
-            style={{ filter: `blur(${scroll * 150}px)` }}
-          >
+          <motion.div className="mt-20" style={{ filter: blur }}>
             <Image
               src={logo}
               alt="uzi-logo"
@@ -32,12 +44,13 @@ export const LoadingScreen: FC = () => {
             />
           </motion.div>
           <motion.div
-            className="w-[390px]"
+            className="mt-32 w-[390px]"
             style={{
-              scaleY: `${1 + scroll * 25}`,
-              scaleX: `${1 + scroll * 25}`,
-              marginTop: `${128 + scroll * 500}px`,
+              scaleY: scale,
+              scaleX: scale,
+              filter: spaceShipBlur,
             }}
+            animate={{}}
           >
             <Image
               src={spaceship}

@@ -1,7 +1,8 @@
 "use client";
 
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import {
   motion,
   useScroll,
@@ -9,16 +10,43 @@ import {
   animate,
   useMotionValue,
   AnimationSequence,
+  cubicBezier,
 } from "framer-motion";
 import logo from "../../public/loading/logo.png";
 import spaceship from "../../public/loading/spaceship.png";
 
 export const LoadingScreen: FC = () => {
+  // router
+  const router = useRouter();
+
   // Scroll stuff
   const { scrollYProgress } = useScroll();
   const blurVal = useTransform(scrollYProgress, [0, 1], [0, 300]);
   const blur = useTransform(blurVal, (v) => `blur(${v}px)`);
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 26]);
+
+  // Scroll - spaceship
+  const spaceshipScale = useTransform(scrollYProgress, [0, 1], [1, 40], {
+    ease: cubicBezier(0.88, 0.18, 1, 0.64),
+  });
+  const spaceshipMarginTop = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [128, 1050],
+    {
+      ease: cubicBezier(0.88, 0.18, 1, 0.64),
+    },
+  );
+  const spaceshipMarginRight = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [0, 1200],
+    {
+      ease: cubicBezier(0.88, 0.18, 1, 0.64),
+    },
+  );
+  const spaceshipOpacity = useTransform(scrollYProgress, [0, 1], [1, 0], {
+    ease: cubicBezier(1, 0, 0.94, 0.07),
+  });
 
   // Spaceship
   const spaceShipBlurVal = useMotionValue(0.35);
@@ -36,7 +64,7 @@ export const LoadingScreen: FC = () => {
 
   // Scroll text
   const scrollTextOpacityVal = useMotionValue(0);
-  const scrollTextOpacityAnimation = animate(scrollTextOpacityVal, 1, {
+  animate(scrollTextOpacityVal, 1, {
     duration: 0.5,
     delay: 3.5,
   });
@@ -45,6 +73,10 @@ export const LoadingScreen: FC = () => {
   scrollYProgress.on("change", (v) => {
     if (v > 0.1) spaceShipAnimate.stop();
     else spaceShipAnimate.play();
+
+    if (v > 0.9) {
+      router.push("/app");
+    }
   });
 
   return (
@@ -61,11 +93,14 @@ export const LoadingScreen: FC = () => {
             />
           </motion.div>
           <motion.div
-            className="mt-32 w-[390px]"
+            className="w-[390px]"
             style={{
-              scaleY: scale,
-              scaleX: scale,
+              scaleY: spaceshipScale,
+              scaleX: spaceshipScale,
               filter: spaceShipBlur,
+              marginTop: spaceshipMarginTop,
+              marginRight: spaceshipMarginRight,
+              opacity: spaceshipOpacity,
             }}
             animate={{}}
           >

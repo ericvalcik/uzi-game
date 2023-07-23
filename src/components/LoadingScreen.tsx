@@ -2,7 +2,6 @@
 
 import React, { FC } from "react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import {
   motion,
   useScroll,
@@ -14,11 +13,17 @@ import {
 } from "framer-motion";
 import logo from "../../public/loading/logo.png";
 import spaceship from "../../public/loading/spaceship.png";
+import localFont from "next/font/local";
+import { cn } from "@/utils/cn";
 
-export const LoadingScreen: FC = () => {
-  // router
-  const router = useRouter();
+const joystix = localFont({ src: "../../public/fonts/joystix.otf" });
 
+type LoadingScreenProps = {
+  // useState props passed from above
+  setRengerPage: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+export const LoadingScreen: FC<LoadingScreenProps> = ({ setRengerPage }) => {
   // Scroll stuff
   const { scrollYProgress } = useScroll();
   const blurVal = useTransform(scrollYProgress, [0, 1], [0, 300]);
@@ -75,7 +80,7 @@ export const LoadingScreen: FC = () => {
     else spaceShipAnimate.play();
 
     if (v > 0.9) {
-      router.push("/app");
+      setRengerPage(true);
     }
   });
 
@@ -112,10 +117,10 @@ export const LoadingScreen: FC = () => {
             />
           </motion.div>
           <motion.div
-            className="mt-20"
+            className={cn("mt-20", joystix.className)}
             style={{ opacity: scrollTextOpacityVal, filter: blur }}
           >
-            Scroll down to begin
+            SWIPE DOWN TO START
           </motion.div>
         </div>
       </div>

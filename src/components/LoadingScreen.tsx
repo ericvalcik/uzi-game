@@ -130,7 +130,7 @@ export const LoadingScreen: FC<LoadingScreenProps> = ({ setRengerPage }) => {
           </motion.div>
           <motion.div
             style={{ opacity: scrollTextDivOpacity }}
-            className="fixed mt-[50vh]"
+            className="fixed mt-[435px]"
           >
             <motion.div
               initial={{ opacity: 0 }}

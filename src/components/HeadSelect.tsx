@@ -6,11 +6,13 @@ import { cn } from "@/utils/cn";
 
 const length = images.length;
 
-export type HeadSelectProps = {};
+export type HeadSelectProps = {
+  // useState props passed from above
+  index: number;
+  setIndex: React.Dispatch<React.SetStateAction<number>>;
+};
 
-export const HeadSelect: FC<HeadSelectProps> = ({}) => {
-  const [index, setIndex] = useState(0);
-
+export const HeadSelect: FC<HeadSelectProps> = ({ index, setIndex }) => {
   return (
     <>
       <ChevronLeft

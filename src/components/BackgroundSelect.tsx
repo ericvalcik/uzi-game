@@ -8,9 +8,16 @@ import { backgrounds } from "@/consts";
 
 const length = backgrounds.length;
 
-export const BackgroundSelect: FC = () => {
-  const [index, setIndex] = useState(0);
+type BackgroundSelectProps = {
+  // useState props passed from above
+  index: number;
+  setIndex: React.Dispatch<React.SetStateAction<number>>;
+};
 
+export const BackgroundSelect: FC<BackgroundSelectProps> = ({
+  index,
+  setIndex,
+}) => {
   return (
     <>
       <button

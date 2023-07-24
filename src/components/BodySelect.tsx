@@ -7,11 +7,13 @@ import { chevronStyling } from "@/consts";
 
 const length = images.length;
 
-export type BodySelectProps = {};
+export type BodySelectProps = {
+  // useState props passed from above
+  index: number;
+  setIndex: React.Dispatch<React.SetStateAction<number>>;
+};
 
-export const BodySelect: FC<BodySelectProps> = ({}) => {
-  const [index, setIndex] = useState(0);
-
+export const BodySelect: FC<BodySelectProps> = ({ index, setIndex }) => {
   return (
     <>
       <ChevronLeft

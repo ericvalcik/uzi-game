@@ -5,6 +5,7 @@ import Link from "next/link";
 import { BackgroundSelect } from "@/components/BackgroundSelect";
 import { BodySelect, HeadSelect } from "@/components";
 import React, { FC, ReactNode, useState } from "react";
+import { joystix } from "@/utils/font";
 
 export default function Page() {
   const [bgIndex, setBgIndex] = useState(0);
@@ -31,8 +32,13 @@ export default function Page() {
                 query: { s: `${bgIndex}${headIndex}${bodyIndex}` },
               }}
             >
-              <button className="select-none flex items-center justify-center gap-4 text-[#ff1aec] rounded-xl border-2 border-[#ff1aec] px-4 py-2 transition-all duration-200 group hover:border-white hover:text-white">
-                SELECT
+              <button
+                className={cn(
+                  "drop-shadow-[0_0_0.35rem_#ff1aec] hover:drop-shadow-[0_0_0.35rem_white] select-none flex items-center justify-center gap-4 text-[#ff1aec] border-2 border-[#ff1aec] px-4 py-2 transition-all duration-200 group hover:border-white hover:text-white",
+                  joystix.className,
+                )}
+              >
+                CONFIRM SELECTION
               </button>
             </Link>
           </div>

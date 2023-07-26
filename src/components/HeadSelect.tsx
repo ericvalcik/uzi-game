@@ -19,7 +19,7 @@ export const HeadSelect: FC<HeadSelectProps> = ({ index, setIndex }) => {
         onClick={() => setIndex((index - 1 + length) % length)}
         size={50}
         className={cn(
-          "relative right-4 md:right-16 bottom-12 z-10",
+          "drop-shadow-[0_0_0.35rem_#ff1aec] hover:drop-shadow-[0_0_0.35rem_white] relative right-4 md:right-16 bottom-6 z-10",
           chevronStyling,
         )}
       />
@@ -42,7 +42,7 @@ export const HeadSelect: FC<HeadSelectProps> = ({ index, setIndex }) => {
         onClick={() => setIndex((index + 1) % length)}
         size={50}
         className={cn(
-          "relative left-4 md:left-16 bottom-12 z-10",
+          "drop-shadow-[0_0_0.35rem_#ff1aec] hover:drop-shadow-[0_0_0.35rem_white] relative left-4 md:left-16 bottom-6 z-10",
           chevronStyling,
         )}
       />

@@ -19,7 +19,10 @@ export const BodySelect: FC<BodySelectProps> = ({ index, setIndex }) => {
       <ChevronLeft
         onClick={() => setIndex((index - 1 + length) % length)}
         size={50}
-        className={cn("relative right-4 md:right-16 mt-44", chevronStyling)}
+        className={cn(
+          "drop-shadow-[0_0_0.35rem_#ff1aec] hover:drop-shadow-[0_0_0.35rem_white] relative right-4 md:right-16 mt-40",
+          chevronStyling,
+        )}
       />
       {images.map((src, mapIndex) => (
         <Image
@@ -39,7 +42,10 @@ export const BodySelect: FC<BodySelectProps> = ({ index, setIndex }) => {
       <ChevronRight
         onClick={() => setIndex((index + 1) % length)}
         size={50}
-        className={cn("relative left-4 md:left-16 mt-44 ", chevronStyling)}
+        className={cn(
+          "drop-shadow-[0_0_0.35rem_#ff1aec] hover:drop-shadow-[0_0_0.35rem_white] relative left-4 md:left-16 mt-40 ",
+          chevronStyling,
+        )}
       />
     </>
   );

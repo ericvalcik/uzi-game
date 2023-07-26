@@ -1,6 +1,6 @@
 "use client";
 
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import Image from "next/image";
 import { ArrowUp } from "lucide-react";
 import {
@@ -14,10 +14,8 @@ import {
 } from "framer-motion";
 import logo from "../../public/loading/logo.png";
 import spaceship from "../../public/loading/spaceship.png";
-import localFont from "next/font/local";
 import { cn } from "@/utils/cn";
-
-const joystix = localFont({ src: "../../public/fonts/joystix.otf" });
+import { joystix } from "@/utils/font";
 
 type LoadingScreenProps = {
   // useState props passed from above
@@ -25,6 +23,8 @@ type LoadingScreenProps = {
 };
 
 export const LoadingScreen: FC<LoadingScreenProps> = ({ setRenderPage }) => {
+  const [imageClicked, setImageClicked] = useState(false);
+
   // Scroll text - opacity
   const scrollTextOpacityVal = useMotionValue(0);
   animate(scrollTextOpacityVal, 1, {
@@ -36,6 +36,7 @@ export const LoadingScreen: FC<LoadingScreenProps> = ({ setRenderPage }) => {
   const shipPosX = useMotionValue(0);
   const shipPosY = useMotionValue(0);
   const spaceshipOnClick = () => {
+    setImageClicked(true);
     const timeout = setTimeout(() => {
       setRenderPage(true);
     }, 1300);
@@ -57,8 +58,8 @@ export const LoadingScreen: FC<LoadingScreenProps> = ({ setRenderPage }) => {
           />
         </motion.div>
         <motion.div
-          className="w-[390px] cursor-pointer z-30"
-          whileHover={{ scale: 1.1 }}
+          className="w-[390px] cursor-pointer z-30 mt-10"
+          whileHover={{ scale: imageClicked ? 1.0 : 1.1 }}
           onClick={spaceshipOnClick}
           style={{
             x: shipPosX,
@@ -79,7 +80,7 @@ export const LoadingScreen: FC<LoadingScreenProps> = ({ setRenderPage }) => {
           <motion.div
             initial={{ opacity: 0 }}
             className={cn(
-              "mt-20 text-center flex flex-col items-center gap-4",
+              "mt-16 text-center flex flex-col items-center gap-4",
               joystix.className,
             )}
             style={{

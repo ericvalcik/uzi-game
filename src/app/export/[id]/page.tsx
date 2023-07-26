@@ -62,7 +62,7 @@ export default async function ExportPage({
   );
 }
 
-export async function generateStaticParams() {
+export async function generateStaticParams(): Promise<{ id: string }[]> {
   const params = [];
 
   for (let i = 0; i < backgrounds.length; i++) {
@@ -73,5 +73,5 @@ export async function generateStaticParams() {
     }
   }
 
-  return params.map((id) => ({ params: { id } }));
+  return params.map((id) => ({ id }));
 }

@@ -15,7 +15,7 @@ export default function Page() {
   const [bodyIndex, setBodyIndex] = useState(0);
 
   return (
-    <main className="fixed w-screen flex h-screen flex-col items-center justify-between md:p-24 py-10">
+    <main className="fixed w-screen flex h-screen flex-col items-center justify-between md:p-24 py-4">
       <div className="flex flex-col items-center justify-center h-full w-[390px]">
         <div className={cn("flex flex-col items-center h-screen")}>
           <Image
@@ -26,7 +26,7 @@ export default function Page() {
             width={200}
           />
           <BackgroundSelect index={bgIndex} setIndex={setBgIndex} />
-          <div className="mt-[30px]">
+          <div className="md:mt-[30px] mt-[10px]">
             <SelectWrapper className="relative h-40 top-[103px]">
               <HeadSelect index={headIndex} setIndex={setHeadIndex} />
             </SelectWrapper>
@@ -34,7 +34,7 @@ export default function Page() {
               <BodySelect index={bodyIndex} setIndex={setBodyIndex} />
             </SelectWrapper>
           </div>
-          <div className="mt-[70px]">
+          <div className="md:mt-[70px] mt-[50px]">
             <Link href={`/export/${bgIndex}${headIndex}${bodyIndex}`}>
               <button
                 className={cn(

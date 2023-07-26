@@ -31,7 +31,7 @@ export const BackgroundSelect: FC<BackgroundSelectProps> = ({
         CHANGE BACKGROUND
       </motion.button>
       <div className="relative drop-shadow-[0_0_0.35rem_#ff1aec]">
-        <div className="absolute border-4 border-solid border-[#ff1aec] w-[290px] md:w-[290px] h-[290px] left-[-145px] top-[calc(64px)]">
+        <div className="absolute border-4 border-solid border-[#ff1aec] w-[290px] md:w-[290px] h-[290px] left-[-145px] md:top-[64px] top-[44px]">
           {backgrounds.map((src, mapIndex) => (
             <Image
               src={src}

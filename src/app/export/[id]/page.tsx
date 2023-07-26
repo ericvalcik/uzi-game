@@ -62,6 +62,7 @@ export default async function ExportPage({
   );
 }
 
+// TODO fix
 export async function generateStaticParams(): Promise<{ id: string }[]> {
   const params = [];
 

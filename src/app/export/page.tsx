@@ -1,3 +1,5 @@
+"use client";
+
 import { notFound } from "next/navigation";
 import { bodies, backgrounds, heads } from "@/consts";
 import Image from "next/image";

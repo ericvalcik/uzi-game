@@ -11,5 +11,5 @@ export default function Home() {
     return <Game />;
   }
 
-  return <LoadingScreen setRengerPage={setRenderPage} />;
+  return <LoadingScreen setRenderPage={setRenderPage} />;
 }

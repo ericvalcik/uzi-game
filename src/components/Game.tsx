@@ -2,10 +2,12 @@
 
 import { cn } from "@/utils/cn";
 import Link from "next/link";
+import Image from "next/image";
 import { BackgroundSelect } from "@/components/BackgroundSelect";
 import { BodySelect, HeadSelect } from "@/components";
 import React, { FC, ReactNode, useState } from "react";
 import { joystix } from "@/utils/font";
+import logo from "../../public/loading/logo.png";
 
 export default function Page() {
   const [bgIndex, setBgIndex] = useState(0);
@@ -13,9 +15,16 @@ export default function Page() {
   const [bodyIndex, setBodyIndex] = useState(0);
 
   return (
-    <main className="fixed w-screen flex h-screen flex-col items-center justify-between md:p-24 py-24">
+    <main className="fixed w-screen flex h-screen flex-col items-center justify-between md:p-24 py-10">
       <div className="flex flex-col items-center justify-center h-full w-[390px]">
         <div className={cn("flex flex-col items-center h-screen")}>
+          <Image
+            src={logo}
+            alt="uzi-logo"
+            className="select-none mb-6"
+            height={100}
+            width={200}
+          />
           <BackgroundSelect index={bgIndex} setIndex={setBgIndex} />
           <div className="mt-[30px]">
             <SelectWrapper className="relative h-40 top-[103px]">
@@ -25,7 +34,7 @@ export default function Page() {
               <BodySelect index={bodyIndex} setIndex={setBodyIndex} />
             </SelectWrapper>
           </div>
-          <div className="mt-[60px]">
+          <div className="mt-[70px]">
             <Link
               href={{
                 pathname: "/export",

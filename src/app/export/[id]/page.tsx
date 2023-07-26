@@ -6,17 +6,14 @@ import Image from "next/image";
 import { cn } from "@/utils/cn";
 
 export default async function ExportPage({
-  searchParams,
+  params: { id },
 }: {
-  searchParams: {};
+  params: { id: string };
 }) {
-  // if not all required params are present, throw 404
-  if (!("s" in searchParams)) return notFound();
-
   // pick the right images from param
-  const background = backgrounds[parseInt((searchParams["s"] as string)[0])];
-  const head = heads[parseInt((searchParams["s"] as string)[1])];
-  const body = bodies[parseInt((searchParams["s"] as string)[2])];
+  const background = backgrounds[parseInt(id[0])];
+  const head = heads[parseInt(id[1])];
+  const body = bodies[parseInt(id[2])];
 
   return (
     <div className="flex items-center justify-center mx-auto w-[390px]">
@@ -63,4 +60,18 @@ export default async function ExportPage({
       </div>
     </div>
   );
+}
+
+export async function generateStaticParams() {
+  const params = [];
+
+  for (let i = 0; i < backgrounds.length; i++) {
+    for (let j = 0; j < heads.length; j++) {
+      for (let k = 0; k < bodies.length; k++) {
+        params.push(`${i}${j}${k}`);
+      }
+    }
+  }
+
+  return params.map((id) => ({ params: { id } }));
 }

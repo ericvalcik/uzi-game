@@ -35,12 +35,7 @@ export default function Page() {
             </SelectWrapper>
           </div>
           <div className="mt-[70px]">
-            <Link
-              href={{
-                pathname: "/export",
-                query: { s: `${bgIndex}${headIndex}${bodyIndex}` },
-              }}
-            >
+            <Link href={`/export/${bgIndex}${headIndex}${bodyIndex}`}>
               <button
                 className={cn(
                   "drop-shadow-[0_0_0.35rem_#ff1aec] hover:drop-shadow-[0_0_0.35rem_white] select-none flex items-center justify-center gap-4 text-[#ff1aec] border-2 border-[#ff1aec] px-4 py-2 transition-all duration-200 group hover:border-white hover:text-white",

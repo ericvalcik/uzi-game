@@ -15,7 +15,8 @@ datasource db {
 }
 
 model Generation {
-id		Int @default(autoincrement()) @id
-ip		String
-combination 	String
+  id		Int @default(autoincrement()) @id
+  ip		String
+  combination 	String
+  createdAt     DateTime?
 }

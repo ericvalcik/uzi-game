@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <div
       className={cn(
-        "w-screen h-screen flex flex-col items-center justify-center text-sm p-6",
+        "w-screen h-screen overflow-hidden flex flex-col items-center justify-center text-sm p-6",
         joystix.className,
       )}
       style={{

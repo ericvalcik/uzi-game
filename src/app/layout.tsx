@@ -24,7 +24,7 @@ export default function RootLayout({
         {children}
         <footer
           className={cn(
-            "absolute bottom-5 right-5 flex gap-1 text-[10px]",
+            "fixed bottom-5 right-5 flex gap-1 text-[10px]",
             joystix.className,
           )}
         >

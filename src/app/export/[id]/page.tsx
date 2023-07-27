@@ -47,7 +47,9 @@ export default function ExportPage({
             }}
           >
             <div className="mb-4">2 SHARE/SAVE UR UZI HOLD DOWN THE IMAGE</div>
-            <div>SHOW HIM OFF ON UR SOCIALS AND DONT FORGET TO TAG US</div>
+            <div className="mb-16">
+              SHOW HIM OFF ON UR SOCIALS AND DONT FORGET TO TAG US
+            </div>
           </motion.div>
           {/*<button*/}
           {/*  onClick={async () => {*/}

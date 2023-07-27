@@ -18,7 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={cn("bg-[url('/stardust.png')]", inter.className)}>
+      <body className={inter.className}>
         {children}
         <footer
           className={cn(

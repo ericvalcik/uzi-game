@@ -1,10 +1,8 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import localFont from "next/font/local";
 import { cn } from "@/utils/cn";
 import { joystix } from "@/utils/font";
-import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -29,19 +27,19 @@ export default function RootLayout({
           )}
         >
           made by
-          <Link
+          <a
             href={"instagram://user?username=kidondrej"}
             style={{ filter: `drop-shadow(0 0 0.4rem white)` }}
           >
             @kidondrej
-          </Link>
+          </a>
           and
-          <Link
+          <a
             href={"instagram://user?username=erics.w0rld"}
             style={{ filter: `drop-shadow(0 0 0.4rem white)` }}
           >
             @erics.w0rld
-          </Link>
+          </a>
         </footer>
       </body>
     </html>

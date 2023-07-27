@@ -6,6 +6,7 @@ import logo from "../../../../public/loading/logo.png";
 import Link from "next/link";
 import { joystix } from "@/utils/font";
 import React from "react";
+import dynamic from "next/dynamic";
 
 export default async function ExportPage({
   params: { id },
@@ -31,10 +32,38 @@ export default async function ExportPage({
           <Image
             src={`/exports/${id}.png`}
             alt="export-img"
-            className="border-4 border-solid border-[#ff1aec] drop-shadow-[0_0_0.35rem_#ff1aec] mb-10"
+            className="border-4 border-solid border-[#ff1aec] drop-shadow-[0_0_0.35rem_#ff1aec] mb-8"
             height={432}
             width={340}
           />
+          <button
+            onClick={() => {
+              const image = new File([`/exports/${id}.png`], fileName, {
+                type: "image/png",
+              });
+              if (
+                navigator.canShare &&
+                navigator.canShare({ files: [image] })
+              ) {
+                navigator
+                  .share({
+                    files: [image],
+                    title: "Uzi Export",
+                    text: "The dopest uzi fosho.",
+                  })
+                  .then(() => console.log("Share was successful."))
+                  .catch((error) => console.log("Sharing failed", error));
+              } else {
+                console.log(`Your system doesn't support sharing files.`);
+              }
+            }}
+            className={cn(
+              "mb-6 drop-shadow-[0_0_0.35rem_#ff1aec] hover:drop-shadow-[0_0_0.35rem_white] select-none flex items-center justify-center gap-4 text-[#ff1aec] border-2 border-[#ff1aec] px-4 py-2 transition-all duration-200 group hover:border-white hover:text-white",
+              joystix.className,
+            )}
+          >
+            SHARE
+          </button>
 
           <a href={`/exports/${id}.png`} download={true}>
             <button

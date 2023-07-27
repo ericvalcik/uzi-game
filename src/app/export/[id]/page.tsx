@@ -40,9 +40,7 @@ export default function ExportPage({
               fetch(`/exports/${id}.png`)
                 .then((res) => res.blob())
                 .then((blob) => {
-                  const image = new File([blob], `thebestuziever.png`, {
-                    type: "image/png",
-                  });
+                  const image = new File([blob], `thebestuziever.png`);
                   if (
                     navigator.canShare &&
                     navigator.canShare({ files: [image] })

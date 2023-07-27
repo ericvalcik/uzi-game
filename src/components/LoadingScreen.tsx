@@ -47,7 +47,7 @@ export const LoadingScreen: FC<LoadingScreenProps> = ({ setRenderPage }) => {
 
   return (
     <div className="w-screen h-screen">
-      <div className="items-center flex flex-col fixed w-screen h-screen">
+      <div className="items-center flex flex-col w-screen h-screen">
         <motion.div className="mt-12">
           <Image
             src={logo}
@@ -76,11 +76,11 @@ export const LoadingScreen: FC<LoadingScreenProps> = ({ setRenderPage }) => {
             height={1080}
           />
         </motion.div>
-        <motion.div className="fixed mt-[435px]">
+        <motion.div className="">
           <motion.div
             initial={{ opacity: 0 }}
             className={cn(
-              "mt-16 text-center flex flex-col items-center gap-4",
+              "mt-6 text-center flex flex-col items-center gap-4",
               joystix.className,
             )}
             style={{

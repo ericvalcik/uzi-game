@@ -19,7 +19,7 @@ export default function Page({ setRenderPage }: PageProps) {
   const [bodyIndex, setBodyIndex] = useState(0);
 
   return (
-    <main className="fixed w-screen flex h-screen flex-col items-center justify-between md:p-24 py-4">
+    <main className="w-screen flex h-screen flex-col items-center justify-between md:p-24 py-4">
       <div className="flex flex-col items-center justify-center h-full w-[390px]">
         <div className={cn("flex flex-col items-center h-screen")}>
           <Image

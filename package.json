@@ -6,9 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
+    "@prisma/client": "5.0.0",
     "@types/node": "20.4.2",
     "@types/react": "18.2.15",
     "@types/react-dom": "18.2.7",
@@ -28,6 +30,7 @@
   "devDependencies": {
     "clsx": "^2.0.0",
     "prettier": "^3.0.0",
+    "prisma": "5.0.0",
     "tailwind-merge": "^1.14.0"
   }
 }

@@ -1,22 +1,38 @@
 "use client";
 
 import { cn } from "@/utils/cn";
-import Link from "next/link";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import { BackgroundSelect } from "@/components/BackgroundSelect";
 import { BodySelect, HeadSelect } from "@/components";
-import React, { FC, ReactNode, useState } from "react";
+import React, {
+  FC,
+  ReactNode,
+  useState,
+  useEffect,
+  useTransition,
+} from "react";
 import { joystix } from "@/utils/font";
 import logo from "../../public/loading/logo.png";
+import { pushGenerationAction } from "@/utils/pushGeneration";
+import { Loader2 } from "lucide-react";
 
 type PageProps = {
   setRenderPage: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export default function Page({ setRenderPage }: PageProps) {
+  const [isPending, startTransition] = useTransition();
   const [bgIndex, setBgIndex] = useState(0);
   const [headIndex, setHeadIndex] = useState(0);
   const [bodyIndex, setBodyIndex] = useState(0);
+  const [ip, setIp] = useState("");
+
+  useEffect(() => {
+    fetch("https://api.ipify.org?format=json")
+      .then((response) => response.json())
+      .then((data) => setIp(data.ip));
+  }, []);
 
   return (
     <main className="w-screen flex w-screen flex-col items-center justify-between md:p-24 py-4 overflow-hidden">
@@ -40,16 +56,45 @@ export default function Page({ setRenderPage }: PageProps) {
             </SelectWrapper>
           </div>
           <div className="md:mt-[70px] mt-[50px]">
-            <Link href={`/export/${bgIndex}${bodyIndex}${headIndex}`}>
-              <button
+            <button
+              type="submit"
+              onClick={() =>
+                startTransition(() =>
+                  pushGenerationAction(
+                    ip,
+                    `${bgIndex}${bodyIndex}${headIndex}`,
+                  ),
+                )
+              }
+              className={cn(
+                "drop-shadow-[0_0_0.35rem_#ff1aec] hover:drop-shadow-[0_0_0.35rem_white] select-none flex items-center justify-center gap-4 text-[#ff1aec] border-2 border-[#ff1aec] px-4 py-2 transition-all duration-200 group hover:border-white hover:text-white",
+                joystix.className,
+              )}
+            >
+              <motion.div
+                animate={{
+                  rotate: [0, 360],
+                }}
+                transition={{
+                  repeat: Infinity,
+                  ease: "linear",
+                  duration: 1,
+                }}
+                style={{
+                  x: -12,
+                  y: -12,
+                }}
                 className={cn(
-                  "drop-shadow-[0_0_0.35rem_#ff1aec] hover:drop-shadow-[0_0_0.35rem_white] select-none flex items-center justify-center gap-4 text-[#ff1aec] border-2 border-[#ff1aec] px-4 py-2 transition-all duration-200 group hover:border-white hover:text-white",
-                  joystix.className,
+                  "absolute top-[50%] left-[50%]",
+                  !isPending && "hidden",
                 )}
               >
+                <Loader2 size={24} strokeWidth={4} />
+              </motion.div>
+              <span className={cn(isPending && "opacity-0")}>
                 CONFIRM SELECTION
-              </button>
-            </Link>
+              </span>
+            </button>
           </div>
         </div>
       </div>

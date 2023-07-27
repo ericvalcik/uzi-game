@@ -31,14 +31,14 @@ export default function RootLayout({
           made by
           <Link
             href={"instagram://user?username=kidondrej"}
-            style={{ filter: `drop-shadow(0 0 0.10rem white)` }}
+            style={{ filter: `drop-shadow(0 0 0.4rem white)` }}
           >
             @kidondrej
           </Link>
           and
           <Link
             href={"instagram://user?username=erics.w0rld"}
-            style={{ filter: `drop-shadow(0 0 0.10rem white)` }}
+            style={{ filter: `drop-shadow(0 0 0.4rem white)` }}
           >
             @erics.w0rld
           </Link>

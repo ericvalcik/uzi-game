@@ -46,8 +46,8 @@ export const LoadingScreen: FC<LoadingScreenProps> = ({ setRenderPage }) => {
   };
 
   return (
-    <div className="w-screen h-screen">
-      <div className="items-center flex flex-col w-screen h-screen">
+    <div className="w-screen">
+      <div className="items-center flex flex-col w-screen">
         <motion.div className="mt-12">
           <Image
             src={logo}

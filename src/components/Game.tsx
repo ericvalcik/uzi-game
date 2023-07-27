@@ -19,9 +19,9 @@ export default function Page({ setRenderPage }: PageProps) {
   const [bodyIndex, setBodyIndex] = useState(0);
 
   return (
-    <main className="w-screen flex h-screen flex-col items-center justify-between md:p-24 py-4">
+    <main className="w-screen flex w-screen flex-col items-center justify-between md:p-24 py-4 overflow-hidden">
       <div className="flex flex-col items-center justify-center h-full w-[390px]">
-        <div className={cn("flex flex-col items-center h-screen")}>
+        <div className={cn("flex flex-col items-center")}>
           <Image
             src={logo}
             alt="uzi-logo"

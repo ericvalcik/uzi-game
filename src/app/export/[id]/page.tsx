@@ -19,13 +19,15 @@ export default async function ExportPage({
     <main className="fixed w-screen flex h-screen flex-col items-center justify-between md:p-24 py-4">
       <div className="flex flex-col items-center justify-center h-full w-[390px]">
         <div className={cn("flex flex-col items-center h-screen")}>
-          <Image
-            src={logo}
-            alt="uzi-logo"
-            className="select-none mb-10"
-            height={100}
-            width={200}
-          />
+          <Link href="/">
+            <Image
+              src={logo}
+              alt="uzi-logo"
+              className="select-none mb-10"
+              height={100}
+              width={200}
+            />
+          </Link>
           <Image
             src={`/exports/${id}.png`}
             alt="export-img"

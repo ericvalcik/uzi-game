@@ -9,7 +9,11 @@ import React, { FC, ReactNode, useState } from "react";
 import { joystix } from "@/utils/font";
 import logo from "../../public/loading/logo.png";
 
-export default function Page() {
+type PageProps = {
+  setRenderPage: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+export default function Page({ setRenderPage }: PageProps) {
   const [bgIndex, setBgIndex] = useState(0);
   const [headIndex, setHeadIndex] = useState(0);
   const [bodyIndex, setBodyIndex] = useState(0);
@@ -21,8 +25,9 @@ export default function Page() {
           <Image
             src={logo}
             alt="uzi-logo"
-            className="select-none mb-6"
+            className="select-none mb-6 cursor-pointer"
             height={100}
+            onClick={() => setRenderPage(false)}
             width={200}
           />
           <BackgroundSelect index={bgIndex} setIndex={setBgIndex} />

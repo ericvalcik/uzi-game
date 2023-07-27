@@ -8,7 +8,7 @@ export default function Home() {
   const [renderPage, setRenderPage] = useState(false);
 
   if (renderPage) {
-    return <Game />;
+    return <Game setRenderPage={setRenderPage} />;
   }
 
   return <LoadingScreen setRenderPage={setRenderPage} />;

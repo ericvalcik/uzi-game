@@ -2,6 +2,7 @@
 
 import { cn } from "@/utils/cn";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import { BackgroundSelect } from "@/components/BackgroundSelect";
 import { BodySelect, HeadSelect } from "@/components";
 import React, {
@@ -14,6 +15,7 @@ import React, {
 import { joystix } from "@/utils/font";
 import logo from "../../public/loading/logo.png";
 import { pushGenerationAction } from "@/utils/pushGeneration";
+import { Loader2 } from "lucide-react";
 
 type PageProps = {
   setRenderPage: React.Dispatch<React.SetStateAction<boolean>>;
@@ -69,7 +71,29 @@ export default function Page({ setRenderPage }: PageProps) {
                 joystix.className,
               )}
             >
-              CONFIRM SELECTION
+              <motion.div
+                animate={{
+                  rotate: [0, 360],
+                }}
+                transition={{
+                  repeat: Infinity,
+                  ease: "linear",
+                  duration: 1,
+                }}
+                style={{
+                  x: -12,
+                  y: -12,
+                }}
+                className={cn(
+                  "absolute top-[50%] left-[50%]",
+                  !isPending && "hidden",
+                )}
+              >
+                <Loader2 size={24} strokeWidth={4} />
+              </motion.div>
+              <span className={cn(isPending && "opacity-0")}>
+                CONFIRM SELECTION
+              </span>
             </button>
           </div>
         </div>

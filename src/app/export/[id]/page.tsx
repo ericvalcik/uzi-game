@@ -40,7 +40,7 @@ export default function ExportPage({
               fetch(`/exports/${id}.png`)
                 .then((res) => res.blob())
                 .then((blob) => {
-                  const image = new File([blob], `${fileName}.png`, {
+                  const image = new File([blob], `thebestuziever.png`, {
                     type: "image/png",
                   });
                   if (

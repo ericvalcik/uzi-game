@@ -18,5 +18,5 @@ model Generation {
   id		Int @default(autoincrement()) @id
   ip		String
   combination 	String
-  createdAt     DateTime?
+  createdAt     DateTime? @default(now())
 }

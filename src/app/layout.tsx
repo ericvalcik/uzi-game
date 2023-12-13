@@ -35,10 +35,10 @@ export default function RootLayout({
           </a>
           and
           <a
-            href={"instagram://user?username=erics.w0rld"}
+            href={"instagram://user?username=erixvalcik"}
             style={{ filter: `drop-shadow(0 0 0.4rem white)` }}
           >
-            @erics.w0rld
+            @erixvalcik
           </a>
         </footer>
       </body>

@@ -14,8 +14,8 @@ import React, {
 } from "react";
 import { joystix } from "@/utils/font";
 import logo from "../../public/loading/logo.png";
-import { pushGenerationAction } from "@/utils/pushGeneration";
 import { Loader2 } from "lucide-react";
+import { redirect } from "next/navigation";
 
 type PageProps = {
   setRenderPage: React.Dispatch<React.SetStateAction<boolean>>;
@@ -60,10 +60,7 @@ export default function Page({ setRenderPage }: PageProps) {
               type="submit"
               onClick={() =>
                 startTransition(() =>
-                  pushGenerationAction(
-                    ip,
-                    `${bgIndex}${bodyIndex}${headIndex}`,
-                  ),
+                  redirect(`/export/${bgIndex}${bodyIndex}${headIndex}`),
                 )
               }
               className={cn(
